@@ -1,5 +1,15 @@
 # Blend Calc
 
+> **AI-assisted project.** This codebase was created with [Claude Code](https://claude.com/claude-code)
+> (Anthropic), directed and reviewed by a human author. The blend, pixel-budget and curved-optics
+> maths is verified numerically — 66 tests pin the conservation invariants, the flat/curved limit
+> cases and the lens-selection logic — and the PDF report is generated and inspected across flat,
+> curved, single-projector, large-array and deliberately-broken designs. The Resolume Arena
+> exporter's XML vocabulary was derived from real files written by an Arena 7.27.0 install and is
+> asserted in CI to invent no elements or attributes. It has **not** been round-tripped through a
+> running Arena, and no blend has ever been driven onto real projectors from it. The shipped
+> projector and lens specifications are seed data flagged `unverified` throughout.
+
 A projector edge-blend calculator that runs entirely in the browser. Define a projection
 canvas, set the array, pick a projector and lens from a library you control, and get the
 system resolution, the overlap budget, the lens requirement per position, a PDF report,
