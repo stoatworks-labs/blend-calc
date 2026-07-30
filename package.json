@@ -9,6 +9,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "deploy": "npm run build && npx wrangler deploy",
+    "serve:dist": "python3 scripts/serve-dist.py --dir dist --port 4321",
     "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false --dry 2>/dev/null || tsc -b",
     "test": "vitest run",
     "test:watch": "vitest"

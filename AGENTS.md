@@ -115,7 +115,28 @@ BLEND_CALC_PDF_OUT=/tmp/out npx vitest run pdf
 BLEND_CALC_XML_OUT=/tmp/out npx vitest run resolume
 ```
 
-## 6. Verified vs assumed
+## 6. Deployment and the CSP
+
+Static-assets Worker on Cloudflare, `wrangler.toml` → `dist/`. See
+[docs/deployment.md](docs/deployment.md).
+
+`public/_headers` carries a strict CSP. **`npm run preview` does not apply it**, so it
+cannot catch a CSP mistake — a policy that blocks the app looks perfectly fine there. Use
+`scripts/serve-dist.py`, which parses `_headers` and actually sends them:
+
+```bash
+npm run build && npm run serve:dist     # then load it and click every export button
+```
+
+That is how the current policy was verified: first render, the lazy jsPDF chunk, and all
+three blob downloads, with zero console output.
+
+Two constraints on the policy: `style-src` needs `'unsafe-inline'` (React sets inline
+`style` attributes), and `img-src` needs `data:` for the favicon and `blob:` for downloads.
+`connect-src 'self'` is deliberate — the tool sends nothing anywhere, and the CSP is what
+enforces that rather than leaving it to good intentions.
+
+## 7. Verified vs assumed
 
 | Claim | Status |
 |---|---|
@@ -128,7 +149,7 @@ BLEND_CALC_XML_OUT=/tmp/out npx vitest run resolume
 
 No blend has ever been driven onto real projectors from this tool.
 
-## 7. Deliberately not here
+## 8. Deliberately not here
 
 - **No `diag` module.** The fleet convention vendors a rotating-log + crash-report module
   into every repo. This is a static browser page with no process, no filesystem and no

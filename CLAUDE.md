@@ -11,9 +11,20 @@ npm run dev          # vite dev server
 npm test             # vitest — 66 tests
 npm run test:watch
 npm run build        # tsc -b && vite build -> dist/
-npm run preview      # serve the built dist/
+npm run preview      # serve the built dist/ (does NOT apply _headers)
+npm run serve:dist   # serve dist/ WITH _headers applied — use this to check the CSP
 npx tsc --noEmit     # typecheck only
 ```
+
+## Deploy
+
+```bash
+npx wrangler login   # you must run this — it's an account sign-in
+npm run deploy       # build + wrangler deploy
+```
+
+Or connect the repo in Cloudflare: build `npm ci && npm run build`, output `dist`.
+See [docs/deployment.md](docs/deployment.md).
 
 Write the generated artefacts out to inspect them:
 
@@ -21,11 +32,6 @@ Write the generated artefacts out to inspect them:
 BLEND_CALC_PDF_OUT=/tmp/out npx vitest run pdf
 BLEND_CALC_XML_OUT=/tmp/out npx vitest run resolume
 ```
-
-## Deploy
-
-Cloudflare Pages. Build command `npm run build`, output directory `dist`.
-`public/_headers` carries the CSP and cache rules.
 
 ## Ground rules
 

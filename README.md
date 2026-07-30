@@ -114,10 +114,13 @@ npm run build
 
 `npm run build` writes a static site to `dist/`.
 
-### Deploying to Cloudflare Pages
+### Deploying to Cloudflare
 
-Build command `npm run build`, output directory `dist`. `public/_headers` sets a strict CSP
-and immutable caching for hashed assets; Pages picks it up automatically.
+Connect the repo with build command `npm ci && npm run build` and output directory `dist`,
+or run `npm run deploy` from a machine with `wrangler` logged in. `wrangler.toml` declares
+the static-assets Worker; `public/_headers` sets a strict CSP and immutable caching for the
+hashed assets. Full instructions, and what the CSP allows and why, are in
+[docs/deployment.md](docs/deployment.md).
 
 ---
 
