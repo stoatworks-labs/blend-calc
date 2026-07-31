@@ -17,6 +17,9 @@
   --radius: 8px;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   color-scheme: dark;
+
+  /* Read by the vendored support footer, which otherwise inherits page colour. */
+  --sw-support-accent: var(--accent);
 }
 
 * {
