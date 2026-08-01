@@ -16,7 +16,7 @@ system resolution, the overlap budget, the lens requirement per position, a PDF 
 and a Resolume Arena advanced-output file.
 
 No backend, no accounts, no telemetry. Everything is computed client-side and stored in
-`localStorage`, so it deploys as a static site to Cloudflare Pages.
+`localStorage`, so it deploys as a static site to a Cloudflare Worker.
 
 ![Blend Calc — a four-projector cylindrical wrap, showing the system resolution, overlap
 budget and array layout](docs/screenshots/blend-calc.png)
