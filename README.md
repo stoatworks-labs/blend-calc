@@ -18,6 +18,13 @@ and a Resolume Arena advanced-output file.
 No backend, no accounts, no telemetry. Everything is computed client-side and stored in
 `localStorage`, so it deploys as a static site to Cloudflare Pages.
 
+![Blend Calc — a four-projector cylindrical wrap, showing the system resolution, overlap
+budget and array layout](docs/screenshots/blend-calc.png)
+
+*A 20 m × 5 m cylindrical screen on an 18 m radius, four projectors wide at 20% blend.
+The warnings are live: this array leaves 26.5% of the screen height uncovered, and the
+curve makes the image 2.7% shorter at the tile edges than at the centre.*
+
 ---
 
 ## What it does
