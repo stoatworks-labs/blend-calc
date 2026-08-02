@@ -126,6 +126,11 @@ export default function App() {
         <button className="primary" disabled={!canExport || pdfBusy} onClick={downloadPdf}>
           {pdfBusy ? 'Building…' : 'PDF report'}
         </button>
+        {/* Opens the shared About dialog — see public/about.js, which delegates
+            this attribute from the document, so nothing needs importing here. */}
+        <button type="button" data-stoatworks-about>
+          About
+        </button>
       </header>
 
       <div className="layout">
