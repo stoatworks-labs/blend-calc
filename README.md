@@ -146,6 +146,10 @@ category, not a product.
 Confirm lens coverage and brightness against manufacturer datasheets, and the room against
 a site survey, before anything is ordered or quoted.
 
+<!-- attributions:start -->
+This project is built on other people's work — see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+<!-- attributions:end -->
+
 ## Licence
 
 MIT.
