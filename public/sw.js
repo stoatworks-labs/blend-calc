@@ -26,7 +26,18 @@
 const CACHE = 'blend-calc-v1';
 
 // Enough to boot offline. Everything else arrives through runtime caching.
-const SHELL = ['/', '/manifest.webmanifest', '/icon.svg'];
+//
+// These live in public/, so Vite neither hashes nor bundles them and the
+// runtime rule below lets them straight through to the network. Offline that
+// means the About dialog is empty; precaching costs a few kB.
+const SHELL = [
+  '/',
+  '/manifest.webmanifest',
+  '/icon.svg',
+  '/about.js',
+  '/about-data.js',
+  '/support-footer.js',
+];
 
 self.addEventListener('install', (event) => {
   // addAll rejects the whole install if any one entry 404s, which would leave
