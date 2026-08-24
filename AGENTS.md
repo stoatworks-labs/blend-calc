@@ -157,3 +157,10 @@ No blend has ever been driven onto real projectors from this tool.
   wanted, the design JSON export already reproduces any calculation exactly.
 - **No backend.** Adding one would change the deployment story from "static Pages" to
   something with an origin, for no functional gain.
+
+## Notes
+
+`docs/NOTES.md` carries this repo's working notes — current status, decisions
+already made, and the traps that have actually bitten. Read it before changing
+anything non-obvious. Cross-cutting fleet knowledge lives in
+[fleet-notes](https://github.com/stoatworks-labs/fleet-notes).
