@@ -8,7 +8,8 @@ holds the short command reference; this file explains the model and the traps.
 ## 1. What this is
 
 A **projector edge-blend calculator**. Browser-only, no backend: React + TypeScript + Vite,
-built to a static `dist/` and hosted on Cloudflare Pages. State lives in `localStorage`.
+built to a static `dist/` and hosted on Cloudflare as a static-assets Worker. State lives in
+`localStorage`.
 
 It answers: given a screen, a number of projectors and a throw distance — what resolution
 is the system, how many pixels am I paying for twice, what lens does each position need,
@@ -155,7 +156,7 @@ No blend has ever been driven onto real projectors from this tool.
   into every repo. This is a static browser page with no process, no filesystem and no
   telemetry by design; a rotating log file has nowhere to go. If diagnostics are ever
   wanted, the design JSON export already reproduces any calculation exactly.
-- **No backend.** Adding one would change the deployment story from "static Pages" to
+- **No backend.** Adding one would change the deployment story from "static Worker" to
   something with an origin, for no functional gain.
 
 ## Notes

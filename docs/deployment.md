@@ -4,15 +4,21 @@ Blend Calc is a static site with no backend, so hosting it is just serving `dist
 `wrangler.toml` declares a static-assets-only Worker pointing at that directory.
 
 Target hostname, following the fleet convention: **`blend-calc.stoatworks-labs.com`**.
-Apps that are the real tool running in the browser get the bare name (like `rfutils` and
-`pmse-to-wwb`); only recorded click-through demos take a `-demo` suffix. This one does real
-work on the visitor's own machine, so it gets the bare name.
+Apps that are the real tool running in the browser get the bare name (like `rfutils`); only
+recorded click-through demos take a `-demo` suffix. This one does real work on the visitor's
+own machine, so it gets the bare name.
 
 ---
 
-## Route A — connect the GitHub repo (recommended)
+## How the live site deploys
 
-Matches how RFutils is deployed, and gives an automatic deploy on every push to `main`.
+`.github/workflows/deploy.yml` runs on every push to `main` that touches more than docs: the
+tests, the build, `wrangler deploy`, then a check that blend-calc.stoatworks-labs.com is serving
+the new build. The two routes below are for a copy of your own.
+
+## Route A — connect the GitHub repo
+
+Gives an automatic deploy on every push to `main`, with Cloudflare running the build.
 
 In the Cloudflare dashboard, create a Workers/Pages project from Git and point it at
 `stoatworks-labs/blend-calc`:
