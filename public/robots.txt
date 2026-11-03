@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blend-calc.stoatworks-labs.com/sitemap.xml

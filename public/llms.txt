@@ -1,0 +1,16 @@
+# Blend Calc
+
+> Projector edge blends, costed
+
+A projector edge-blend calculator that runs entirely in your browser. Flat or cylindrical canvas, any array, and the solver closes the array on the screen exactly. Then it tells you the system resolution, how much doubled and quad-covered overlap you're paying for more than once and the lens each position needs, and hands you a PDF report and a Resolume Arena advanced-output file.
+
+It's a Stoatworks Labs web tool: free, and it runs in a web browser.
+
+## Links
+
+- [Blend Calc, the app](https://blend-calc.stoatworks-labs.com/): runs in the browser, free
+- [Project page](https://stoatworks-labs.com/software/blend-calc/)
+- [Web tool page](https://stoatworks-labs.com/web-tools/blend-calc/)
+- [User guide](https://stoatworks-labs.com/software/blend-calc/guide/)
+- [Source on GitHub](https://github.com/stoatworks-labs/blend-calc)
+- [Self-hosting](https://stoatworks-labs.com/web-tools/self-hosting/): run it on your own server

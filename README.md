@@ -18,6 +18,8 @@ Arena advanced-output file.
 There's no backend, so there are no accounts and no telemetry either. Everything is worked out in
 the browser and stored in `localStorage`, so it deploys as a static site to a Cloudflare Worker.
 
+It's live at [blend-calc.stoatworks-labs.com](https://blend-calc.stoatworks-labs.com). There's more on [its page at stoatworks-labs.com](https://stoatworks-labs.com/web-tools/blend-calc/), along with the [user guide](https://stoatworks-labs.com/software/blend-calc/guide/) and [notes on running it on your own server](https://stoatworks-labs.com/web-tools/self-hosting/).
+
 ![Blend Calc: a four-projector cylindrical wrap, showing the system resolution, overlap
 budget and array layout](docs/screenshots/blend-calc.png)
 

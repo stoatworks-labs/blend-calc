@@ -611,7 +611,8 @@ export default function App() {
         Blend Calc is a planning tool. Every figure here is geometric — it assumes square pixels,
         no keystone, no lens distortion and a perfectly built screen. Confirm lens coverage and
         brightness against manufacturer datasheets, and confirm the room against a site survey,
-        before anything gets ordered or quoted.
+        before anything gets ordered or quoted.{' '}
+        <a href="https://stoatworks-labs.com/web-tools/blend-calc/" target="_blank" rel="noopener">More about Blend Calc</a>.
       </div>
 
       {showLibrary ? (
