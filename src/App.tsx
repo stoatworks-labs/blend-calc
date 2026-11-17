@@ -98,9 +98,9 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="topbar">
-        <div className="brand">
-          <span className="brand-mark" aria-hidden />
+      <header className="topbar sw-bar">
+        <div className="brand sw-brand">
+          <span className="sw-mark" aria-hidden="true">◐</span>
           Blend Calc
         </div>
         <input
@@ -520,15 +520,15 @@ export default function App() {
             </div>
             <div className="legend">
               <span>
-                <span className="swatch" style={{ background: '#0f2033', border: '1px solid #e8eef5' }} />
+                <span className="swatch" style={{ background: 'var(--screen-fill)', border: '1px solid var(--screen-edge)' }} />
                 Screen
               </span>
               <span>
-                <span className="swatch" style={{ border: '1.5px solid #4cc9f0' }} />
+                <span className="swatch" style={{ border: '1.5px solid var(--tile)' }} />
                 Projector image
               </span>
               <span>
-                <span className="swatch" style={{ background: 'rgba(249,160,63,0.55)' }} />
+                <span className="swatch" style={{ background: 'color-mix(in srgb, var(--blend) 55%, transparent)' }} />
                 Doubled (blend) region
               </span>
             </div>

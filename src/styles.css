@@ -1,25 +1,42 @@
+/* Colours come from the shared Stoatworks theme (stoatworks-theme.css, imported
+   first), so the page follows the system's light or dark setting like every fleet
+   tool. These are the tool's own names for its tokens. */
 :root {
-  --navy-900: #0a1420;
-  --navy-800: #0d1b2a;
-  --navy-700: #132437;
-  --navy-600: #1b3047;
-  --line: #223c56;
-  --line-soft: #1a2e44;
-  --text: #e8eef5;
-  --text-dim: #93a8bd;
-  --text-faint: #64798f;
-  --accent: #4cc9f0;
-  --accent-dim: #2d8fb3;
-  --blend: #f9a03f;
-  --danger: #ef5d5d;
-  --warn: #f2b134;
-  --ok: #5ec98a;
-  --radius: 8px;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  color-scheme: dark;
+  --navy-900: var(--sw-paper);
+  --navy-800: var(--sw-card);
+  --navy-700: var(--sw-tint);
+  --navy-600: color-mix(in srgb, var(--sw-ink) 6%, var(--sw-tint));
+  --line: var(--sw-line);
+  --line-soft: var(--sw-line);
+  --text: var(--sw-ink);
+  --text-dim: var(--sw-muted);
+  --text-faint: var(--sw-faint);
+  --accent: var(--sw-accent);
+  --accent-dim: color-mix(in srgb, var(--sw-accent) 70%, var(--sw-card));
+  --danger: var(--sw-bad);
+  --warn: var(--sw-warn);
+  --ok: var(--sw-ok);
+  --radius: var(--sw-radius);
+  --mono: var(--sw-mono);
 
-  /* Read by the vendored support footer, which otherwise inherits page colour. */
-  --sw-support-accent: var(--accent);
+  /* The tool's own colours: the blend (doubled) zone keeps its orange, and the
+     layout drawing's screen, outline and projector images. Light values here,
+     dark ones below. */
+  --blend: #b8640f;
+  --screen-fill: #dfe7ef;
+  --screen-edge: var(--sw-ink);
+  --tile: var(--sw-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --blend: #f9a03f;
+    --screen-fill: #0f2033;
+  }
+}
+:root[data-theme="dark"] {
+  --blend: #f9a03f;
+  --screen-fill: #0f2033;
 }
 
 * {
@@ -36,8 +53,7 @@ body {
   margin: 0;
   background: var(--navy-900);
   color: var(--text);
-  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  font: 14px/1.5 var(--sw-font);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -49,38 +65,19 @@ body {
   min-height: 100%;
 }
 
+/* The navy bar (sw-bar) gives the ground and text colour; this keeps the tool's
+   own one-row density. Its controls are restated at the end of the buttons and
+   segments sections, because the tool's bare button and input rules beat the
+   theme's layered bar rules. */
 .topbar {
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 10px 20px;
-  background: var(--navy-800);
-  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 20;
   flex-wrap: wrap;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-  font-size: 15px;
-}
-
-.brand-mark {
-  width: 26px;
-  height: 18px;
-  border-radius: 3px;
-  background: linear-gradient(
-    100deg,
-    var(--accent) 0 45%,
-    var(--blend) 55% 100%
-  );
-  flex: none;
 }
 
 .topbar-spacer {
@@ -121,11 +118,9 @@ body {
 .card > h2 {
   margin: 0;
   padding: 11px 14px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--text-dim);
+  color: var(--text);
   background: var(--navy-700);
   border-bottom: 1px solid var(--line-soft);
   display: flex;
@@ -181,9 +176,9 @@ select,
 textarea {
   width: 100%;
   padding: 7px 9px;
-  background: var(--navy-900);
+  background: var(--sw-card);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   color: var(--text);
   font: inherit;
   font-size: 13px;
@@ -204,8 +199,8 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--accent-dim);
-  box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.18);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 input[type='range'] {
@@ -238,17 +233,16 @@ button {
   font: inherit;
   font-size: 13px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   border: 1px solid var(--line);
-  background: var(--navy-700);
+  background: var(--sw-card);
   color: var(--text);
   padding: 7px 12px;
   transition: background 0.12s, border-color 0.12s;
 }
 
 button:hover:not(:disabled) {
-  background: var(--navy-600);
-  border-color: var(--accent-dim);
+  border-color: var(--accent);
 }
 
 button:disabled {
@@ -257,15 +251,15 @@ button:disabled {
 }
 
 button.primary {
-  background: var(--accent-dim);
-  border-color: var(--accent-dim);
-  color: #04222e;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--sw-on-accent);
   font-weight: 600;
 }
 
 button.primary:hover:not(:disabled) {
-  background: var(--accent);
   border-color: var(--accent);
+  filter: brightness(1.08);
 }
 
 button.ghost {
@@ -274,7 +268,7 @@ button.ghost {
 
 button.danger {
   color: var(--danger);
-  border-color: rgba(239, 93, 93, 0.4);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
 button.small {
@@ -288,31 +282,62 @@ button.small {
   flex-wrap: wrap;
 }
 
+/* On the navy bar: outlined light buttons, and the main action filled with the
+   soft accent, as the theme draws them. */
+.topbar button {
+  background: transparent;
+  color: var(--sw-navy-ink);
+  border-color: var(--sw-navy-line);
+}
+
+.topbar button:hover:not(:disabled) {
+  background: transparent;
+  border-color: var(--sw-accent-soft);
+}
+
+.topbar button.primary,
+.topbar button.primary:hover:not(:disabled) {
+  background: var(--sw-accent-soft);
+  border-color: var(--sw-accent-soft);
+  color: var(--sw-navy);
+}
+
+.topbar input[type='text'] {
+  background: var(--sw-navy-tint);
+  color: var(--sw-navy-ink);
+  border-color: var(--sw-navy-line);
+}
+
 /* -------------------------------------------------------------- segments */
 
+/* mymac's segmented control: joined segments on a hairline, the chosen one
+   filled with the accent. */
 .segmented {
   display: flex;
-  background: var(--navy-900);
+  background: var(--sw-card);
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 2px;
-  gap: 2px;
+  border-radius: var(--sw-radius-sm);
+  overflow: hidden;
 }
 
 .segmented button {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 5px 8px;
+  padding: 6px 8px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 0;
   color: var(--text-dim);
   white-space: nowrap;
 }
 
+.segmented button + button {
+  border-left: 1px solid var(--line);
+}
+
 .segmented button[aria-pressed='true'] {
-  background: var(--accent-dim);
-  color: #04222e;
+  background: var(--accent);
+  color: var(--sw-on-accent);
   font-weight: 600;
 }
 
@@ -321,18 +346,43 @@ button.small {
   color: var(--text);
 }
 
+/* The units switch on the navy bar: translucent, the chosen one in soft accent. */
+.topbar .segmented {
+  background: var(--sw-navy-tint);
+  border-color: var(--sw-navy-line);
+}
+
+.topbar .segmented button {
+  border-color: var(--sw-navy-line);
+  color: var(--sw-navy-ink-2);
+}
+
+.topbar .segmented button[aria-pressed='true'] {
+  background: var(--sw-accent-soft);
+  color: var(--sw-navy);
+}
+
+.topbar .segmented button:hover:not([aria-pressed='true']) {
+  background: var(--sw-navy-tint-line);
+  color: var(--sw-navy-ink);
+}
+
 /* --------------------------------------------------------------- results */
 
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1px;
-  background: var(--line-soft);
+  /* Hairlines drawn by each cell rather than by the grid's ground showing
+     through a gap, so a short last row leaves card, not a block of line
+     colour. The negative margin tucks the outer edge's lines under the card's
+     own border. */
+  margin: 0 -1px -1px 0;
 }
 
 .stat {
   background: var(--navy-800);
   padding: 12px 14px;
+  box-shadow: inset -1px -1px 0 var(--line-soft);
 }
 
 .stat .k {
@@ -413,20 +463,20 @@ table.data tbody tr:hover td {
   line-height: 1.45;
   border-left: 3px solid var(--text-faint);
   background: var(--navy-700);
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 var(--sw-radius-sm) var(--sw-radius-sm) 0;
 }
 
 .diag.error {
   border-left-color: var(--danger);
-  background: rgba(239, 93, 93, 0.1);
+  background: color-mix(in srgb, var(--danger) 10%, var(--navy-800));
 }
 .diag.warning {
   border-left-color: var(--warn);
-  background: rgba(242, 177, 52, 0.09);
+  background: color-mix(in srgb, var(--warn) 10%, var(--navy-800));
 }
 .diag.info {
-  border-left-color: var(--accent-dim);
-  background: rgba(76, 201, 240, 0.07);
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--navy-800));
 }
 
 .diag .tag {
@@ -457,9 +507,9 @@ table.data tbody tr:hover td {
   text-transform: uppercase;
   padding: 2px 6px;
   border-radius: 4px;
-  background: rgba(242, 177, 52, 0.16);
+  background: color-mix(in srgb, var(--warn) 16%, transparent);
   color: var(--warn);
-  border: 1px solid rgba(242, 177, 52, 0.3);
+  border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent);
 }
 
 /* -------------------------------------------------------------- diagram */
@@ -514,7 +564,7 @@ table.data tbody tr:hover td {
 .modal {
   background: var(--navy-800);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--sw-radius);
   width: min(900px, 100%);
   max-height: 88vh;
   display: flex;
@@ -555,7 +605,7 @@ table.data tbody tr:hover td {
 
 .list {
   border: 1px solid var(--line-soft);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   max-height: 280px;
   overflow: auto;
 }
@@ -596,7 +646,7 @@ table.data tbody tr:hover td {
   border: 1px solid var(--line-soft);
   border-left: 3px solid var(--warn);
   padding: 10px 12px;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 var(--sw-radius-sm) var(--sw-radius-sm) 0;
 }
 
 .footer-note {
@@ -609,7 +659,7 @@ table.data tbody tr:hover td {
 }
 
 .footer-note a {
-  color: var(--accent-dim);
+  color: var(--accent);
 }
 
 .checkbox {

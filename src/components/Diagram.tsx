@@ -51,7 +51,7 @@ export function FrontElevation({
       aria-label="Front elevation of the projector array over the screen"
     >
       {/* screen surface */}
-      <rect x={scrX} y={scrY} width={screen.width} height={screen.height} fill="#0f2033" />
+      <rect x={scrX} y={scrY} width={screen.width} height={screen.height} fill="var(--screen-fill)" />
 
       {/* overlap bands */}
       {Array.from({ length: Math.max(0, columns - 1) }, (_, c) => (
@@ -61,7 +61,7 @@ export function FrontElevation({
           y={0}
           width={sol.hOverlapMetres}
           height={H}
-          fill="#f9a03f"
+          fill="var(--blend)"
           opacity={0.34}
         />
       ))}
@@ -72,7 +72,7 @@ export function FrontElevation({
           y={r * pitchY + sol.tileHeight - sol.vOverlapMetres}
           width={W}
           height={sol.vOverlapMetres}
-          fill="#f9a03f"
+          fill="var(--blend)"
           opacity={0.34}
         />
       ))}
@@ -86,13 +86,13 @@ export function FrontElevation({
             width={sol.tileWidth}
             height={sol.tileHeight}
             fill="none"
-            stroke="#4cc9f0"
+            stroke="var(--tile)"
             strokeWidth={stroke}
           />
           <text
             x={t.x + sol.tileWidth * 0.04}
             y={t.y + fontSize * 1.3}
-            fill="#4cc9f0"
+            fill="var(--tile)"
             fontSize={fontSize}
             fontFamily="ui-monospace, monospace"
           >
@@ -108,7 +108,7 @@ export function FrontElevation({
         width={screen.width}
         height={screen.height}
         fill="none"
-        stroke="#e8eef5"
+        stroke="var(--screen-edge)"
         strokeWidth={stroke * 1.6}
       />
     </svg>
@@ -188,7 +188,7 @@ export function PlanView({
         <g key={i}>
           <path
             d={`M${r.origin.x},${r.origin.y} L${r.left.x},${r.left.y} L${r.right.x},${r.right.y} Z`}
-            fill="#4cc9f0"
+            fill="var(--tile)"
             opacity={0.09}
           />
           <line
@@ -196,7 +196,7 @@ export function PlanView({
             y1={r.origin.y}
             x2={r.left.x}
             y2={r.left.y}
-            stroke="#4cc9f0"
+            stroke="var(--tile)"
             strokeWidth={stroke * 0.55}
             opacity={0.75}
           />
@@ -205,17 +205,17 @@ export function PlanView({
             y1={r.origin.y}
             x2={r.right.x}
             y2={r.right.y}
-            stroke="#4cc9f0"
+            stroke="var(--tile)"
             strokeWidth={stroke * 0.55}
             opacity={0.75}
           />
         </g>
       ))}
 
-      <path d={arcPts.join(' ')} fill="none" stroke="#e8eef5" strokeWidth={stroke * 1.4} />
+      <path d={arcPts.join(' ')} fill="none" stroke="var(--screen-edge)" strokeWidth={stroke * 1.4} />
 
       {rigs.map((r, i) => (
-        <circle key={i} cx={r.origin.x} cy={r.origin.y} r={stroke * 2.2} fill="#f9a03f" />
+        <circle key={i} cx={r.origin.x} cy={r.origin.y} r={stroke * 2.2} fill="var(--blend)" />
       ))}
     </svg>
   )
